@@ -52,8 +52,8 @@ Check everything ran and match::
 
 and similarly for south. Other commands::
 
-  python /src/legacysim/py/legacysim/scripts/merge.py --filetype injected --cat-dir $CSCRATCH/legacysim/dr9/ebv1000shaper/north/merged --outdir $CSCRATCH/legacysim/dr9/ebv1000shaper/north
-  python /src/legacysim/py/legacysim/scripts/merge.py --filetype tractor --cat-dir $CSCRATCH/legacysim/dr9/ebv1000shaper/north/merged --outdir $CSCRATCH/legacysim/dr9/ebv1000shaper/north
+  python /src/legacysim/py/legacysim/scripts/merge.py --filetype injected --cat-dir $CSCRATCH/legacysim/dr9/ebv1000shaper/north/file0_rs0_skip0/merged --outdir $CSCRATCH/legacysim/dr9/ebv1000shaper/north
+  python /src/legacysim/py/legacysim/scripts/merge.py --filetype tractor --cat-dir $CSCRATCH/legacysim/dr9/ebv1000shaper/north/file0_rs0_skip0/merged --outdir $CSCRATCH/legacysim/dr9/ebv1000shaper/north
   python /src/legacysim/py/legacysim/scripts/match.py --tractor-legacypipe /global/cfs/cdirs/cosmo/data/legacysurvey/dr9/north/ --outdir $CSCRATCH/legacysim/dr9/ebv1000shaper/north --cat-fn $CSCRATCH/legacysim/dr9/ebv1000shaper/north/file0_rs0_skip0/merged/matched_legacypipe_input.fits
   python /src/legacysim/py/legacysim/scripts/cutout.py --outdir $CSCRATCH/legacysim/dr9/ebv1000shaper/north --plot-fn "plots/cutout_north-%(brickname)s-%(icut)d.png" --ncuts 2
   python /src/legacysim/py/legacysim/scripts/resources.py --outdir $CSCRATCH/legacysim/dr9/ebv1000shaper/north --plot-fn plots/resources-summary_north.png
