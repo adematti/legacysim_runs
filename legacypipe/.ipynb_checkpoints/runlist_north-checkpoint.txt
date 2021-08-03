@@ -1,6 +1,0 @@
-#stages0 = writecat:legacypipe:DR9.6.2
-#stages1 = writecat:legacypipe:DR9.6.7
-1576p565 file0_rs0_skip0 stages0
-1591p562 file0_rs0_skip0 stages0
-2338p577 file0_rs0_skip0 stages1
-1486p330 file0_rs0_skip0 stages1
