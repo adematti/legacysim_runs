@@ -213,7 +213,7 @@ def get_truth(truth_fn, south=True):
     mask = truth.get('hsc_object_id') >= 0
     mask &= notinELG_mask(maskbits=truth.maskbits,gsnr=snr['g'],rsnr=snr['r'],zsnr=snr['z'],gnobs=truth.nobs_g,rnobs=truth.nobs_r,znobs=truth.nobs_z)
     mask &= get_mask_depth(truth)
-    mask &= get_mask_ts(truth,south=south,gmarg=0.5,grmarg=0.5,rzmarg=0.5)
+    mask &= get_mask_ts(truth,south=south,gmarg=1.2,grmarg=0.8,rzmarg=0.5)
     for b in ['g','r','z','gfiber']:
         mask &= (~np.isnan(truth.get(b))) & (~np.isinf(truth.get(b)))
     logger.info('Target selection: %d/%d objects',mask.sum(),mask.size)
@@ -284,7 +284,7 @@ def get_grid_in_brick(survey, brickname, rng=None, seed=None):
     logger.info('Generating grid for %s' % brickname)
     
     offset = rng.uniform(0.,1.,size=2)
-    side = 60 # 60*0.262 = 15.72 arcsec
+    side = 144 # 60*0.262 = 15.72 arcsec
     # for HexGrid spacing is defined as radius... here we rather want space along x and y, so divide by correct factor
     # we also alternate start of horizontal lines depending on brick column, to allow for better transition between bricks
     grid = HexGrid(spacing=side/(2.*np.tan(np.pi/6)),shape=(W,H),shift=brick.brickcol % 2)
@@ -324,15 +324,6 @@ def get_grid_randoms(truth_fn, bricknames=[], south=True, seed=None):
     randoms.fill(sample_from_truth(randoms,truth,rng=rng),index_self=None,index_other=None)
 
     return randoms
-
-    
-def write_bricklist(filename='bricklist.txt',south=False):
-    dirname = '/global/cfs/cdirs/desi/survey/catalogs/SV3/LSS'
-    targets = SimCatalog(os.path.join(dirname,'dark_targets.fits'))
-    photsys = 'S' if south else 'N'
-    with open(filename,'w') as file:
-        for brickname in np.unique(targets.brickname[targets.photsys == photsys]):
-            file.write('{}\n'.format(brickname))
     
 
 
@@ -350,9 +341,6 @@ if __name__ == '__main__':
         import settings_north as settings
     else:
         import settings_south as settings
-
-    if 'bricklist' in opt.do:
-        write_bricklist(settings.bricklist_fn,south=south)
 
     if 'injected' in opt.do:
         injected = get_grid_randoms(settings.truth_fn,bricknames=settings.get_bricknames(),south=south,seed=42) 

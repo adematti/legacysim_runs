@@ -1,0 +1,2 @@
+#stages0 = srcs:docker:DR9.6.5b writecat:docker:DR9.6.6
+0450p057 file0_rs0_skip0 stages0
