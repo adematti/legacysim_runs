@@ -1,7 +1,7 @@
 SV3
 ======
 
-Run 1000 bricks covering a large EBV range in south and south.
+Run legacysim on SV3.
 
 On NERSC
 --------

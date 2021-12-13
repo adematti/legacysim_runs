@@ -300,15 +300,6 @@ def get_grid_in_brick(survey, brickname, rng=None, seed=None):
     mask_primary = (catalog.ra >= brick.ra1) * (catalog.ra < brick.ra2) * (catalog.dec >= brick.dec1) * (catalog.dec < brick.dec2)
     
     return catalog[mask_primary]
-    """
-    #import pdb;pdb.set_trace()
-    W, H, pixscale = brickwcs.get_width(), brickwcs.get_height(), brickwcs.pixel_scale()
-    print(W,H,pixscale)
-    targetwcs = wcs_for_brick(brick, W=W, H=H, pixscale=pixscale)
-    flag, ra, dec = targetwcs.pixelxy2radec(bx,by)
-    print(ra,dec)
-    wcs_for_brick().pixelxy2radec(ra,dec)
-    """
 
     
 def get_grid_randoms(truth_fn, bricknames=[], south=True, seed=None):
