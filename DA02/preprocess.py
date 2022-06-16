@@ -247,7 +247,7 @@ def sample_from_truth(randoms, truth, rng=None, seed=None):
     return randoms
 
 
-def get_legacysurvey_randoms(randoms_fn, truth_fn, bricknames=[], rng=None, seed=None):
+def get_legacysurvey_randoms(randoms_fn, truth_fn, bricknames=(), rng=None, seed=None):
     """Build legacysim catalog of injected sources from legacysurvey randoms and truth table."""
     if not isinstance(randoms_fn,list): randoms_fn = [randoms_fn]
     randoms = 0
@@ -292,7 +292,7 @@ def get_grid_in_brick(survey, brickname, rng=None, seed=None):
     positions = grid._mask(grid.positions)
 
     catalog = SimCatalog(size=positions.shape[0])
-    catalog.bx,catalog.by = positions.T
+    catalog.bx, catalog.by = positions.T
     
     catalog.ra, catalog.dec = brickwcs.pixelxy2radec(catalog.bx,catalog.by)
     catalog.id = catalog.index()
@@ -302,7 +302,7 @@ def get_grid_in_brick(survey, brickname, rng=None, seed=None):
     return catalog[mask_primary]
 
     
-def get_grid_randoms(truth_fn, bricknames=[], south=True, seed=None):
+def get_grid_randoms(truth_fn, bricknames=(), south=True, seed=None):
     
     rng = np.random.RandomState(seed=seed)
     randoms = 0
